@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excercise</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script1.js"></script>
+</head>
+<body>
+    <div class="content">
+        
+        <form novalidate id="signup" action="" method="post" >
+            <h1 id="title">Sign Up</h1>
+            <div class="input">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name"placeholder="Enter your full name" name="name">
+                <small></small>
+            </div>
+            <div class="input">
+                <label for="email">Email:</label><br>
+                <input type="email" name="email" id="email" placeholder="Enter your email address"> 
+                <small></small>          
+            </div>
+            <div class="input">
+                <label for="PasswordInput">Password:</label><br>
+                    <input type="password" id="PasswordInput" placeholder="Type your password">
+                    <label class="toggle">
+                        <input type="checkbox" id="ToggleVisibility">
+                        <img src="eye.svg" id="image1" alt="">
+                    </label><br><small></small>
+            </div>            
+            <div class="input">
+                <label id="RetypeLabel" for="RetypePasswordInput">Retype Password:</label><br>
+                    <input  type="password" id="RetypePasswordInput" placeholder="Type your password">
+                    <label class="toggle">
+                        <input type="checkbox" id="ToggleVisibility2">
+                        <img src="eye.svg" id="image2" alt="">
+                    </label><br><small></small>                                     
+            </div>           
+            <div class="input">
+                <label id="postalLabel" for="postal">Postal Code</label>
+                <input type="text" id="postal" placeholder="Enter your postal code">
+                <small></small><br>
+            </div>
+            <div class="input">
+                <label for="city">Select your city</label>
+                <button type="button" class="btn-rm" id="remove"  onclick="removecity()">Remove city</button><br>
+                <select name="" id="city" required>
+                    <option value="select">Select City</option>
+                    <option value="NewYork">New York City</option>
+                    <option value="Montreal">Montreal</option>
+                    <option value="Laval">Laval</option>
+                    <option value="Longueil">Longueil</option>
+                    <option value="Brossard">Brossard</option>
+                    <option value="Sherbrooke">Sherbrooke</option>
+                </select><br>
+                <small></small>
+            </div>
+            <div class="btn-sbt">
+                <input id="register" class="button" type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
