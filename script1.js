@@ -26,6 +26,40 @@ function hasValue(input, message) {
     return showSuccess(input);
 }
 
+function validateEmail(input, requiredMsg, invalidMsg) {
+    if (!hasValue(input, requiredMsg)) {
+    return false;
+    }
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const email = input.value.trim();
+    if (!emailRegex.test(email)) {
+        return showError(input, invalidMsg);
+    }
+    return true;
+}
+
+function validatePassword(input, requiredMsg, invalidMsg) {
+    
+    if (!hasValue(input, requiredMsg)) {
+        return false;
+    }
+    const passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{6,}$/;
+    const password = input.value.trim();
+    if (!passwordRegex.test(password)) {
+        return showError(input, invalidMsg);
+    }
+    return showSuccess(input);
+}
+
+function validateConfirmedPassword(input,requiredMsg){
+    if(!hasValue(input, requiredMsg)){
+        return false;
+    }
+    else{
+        return true;
+    }
+} 
+
 function validatePostal(input, requiredMsg, invalidMsg) {
     if (!hasValue(input, requiredMsg)) {
         return false;
@@ -46,48 +80,15 @@ function validateCity(input, message) {
     else{
         return showSuccess(input);}
 }
-
-function validateEmail(input, requiredMsg, invalidMsg) {
-    if (!hasValue(input, requiredMsg)) {
-    return false;
-    }
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const email = input.value.trim();
-    if (!emailRegex.test(email)) {
-        return showError(input, invalidMsg);
-    }
-    return true;
-}
-
-function validatePassword(input, requiredMsg, invalidMsg) {
-    
-    if (!hasValue(input, requiredMsg)) {
-        return false;
-    }
-    
-    const passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{6,}$/;
-    const password = input.value.trim();
-    if (!passwordRegex.test(password)) {
-        return showError(input, invalidMsg);
-    }
-    return showSuccess(input);
-}
-function validateConfirmedPassword(input,requiredMsg,invalidMsg){
-    if(!hasValue(input, requiredMsg)){
-        return false;
-    }
-} 
-
-const FNAME_REQUIRED = "Please enter your first name";
-const LNAME_REQUIRED = "Please enter your last name";
+const NAME_REQUIRED = "Please enter your name";
 const EMAIL_REQUIRED = "Please enter your email";
-const EMAIL_INVALID = "Please follow standard email formatting";
+const EMAIL_INVALID = "Please enter a good email format";
 const PASSWORD_REQUIRED = "Please enter your password";
 const PASSWORD_INVALID = "Your password must contain at least 6 characters, at least one digit, and one special character";
 const CONFIRM_REQUIRED = "Please confirm your password";
 const CONFIRM_MISMATCH = "Passwords do not match";
 const POSTALCODE_REQUIRED = "Please enter a postal code";
-const POSTALCODE_INVALID = "Please follow postal code formatting: A1A 1A1";
+const POSTALCODE_INVALID = "Please enter a good postal code format";
 const CITY_REQUIRED = "Please select a city";
 
 
@@ -95,10 +96,10 @@ document.querySelector("#signup").addEventListener("submit", function (event) {
     event.preventDefault();
 
     let form = event.target;
-    let nameValid = hasValue(form.elements["name"], FNAME_REQUIRED);
+    let nameValid = hasValue(form.elements["name"], NAME_REQUIRED);
     let emailValid = validateEmail(form.elements["email"], EMAIL_REQUIRED, EMAIL_INVALID);
     let passwordValid = validatePassword(form.elements["PasswordInput"], PASSWORD_REQUIRED, PASSWORD_INVALID);
-    let confirmValid = validatePassword(form.elements["RetypePasswordInput"], CONFIRM_REQUIRED,CONFIRM_MISMATCH); 
+    let confirmValid = validateConfirmedPassword(form.elements["RetypePasswordInput"], CONFIRM_REQUIRED,CONFIRM_MISMATCH); 
     let postalValid = validatePostal(form.elements["postal"],POSTALCODE_REQUIRED,POSTALCODE_INVALID);
     let cityValid = validateCity(form.elements["city"], CITY_REQUIRED);
 
